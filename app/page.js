@@ -1,6 +1,21 @@
+"use client";
+
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, reset, incrementByAmount } from "@/lib/features/counter/slice";
+import { toggle, setTrue, setFalse } from "@/lib/features/quote/slice";
 import Image from "next/image";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.counter.value);
+  const boolValue = useSelector((state) => state.boolean.value);
+
+  useEffect(() => { 
+    console.log("Counter Value:", count);
+    console.log("Boolean Value:", boolValue);
+  }, [count, boolValue]);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -22,6 +37,42 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        {/* Display Redux Values */}
+        <div className="border p-4 rounded-lg text-center">
+          <h2 className="text-lg font-semibold">Redux State</h2>
+          <p>Counter: {count}</p>
+          <p>Boolean State: {boolValue ? "True ✅" : "False ❌"}</p>
+
+          {/* Counter Controls */}
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => dispatch(increment())} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+              Increment
+            </button>
+            <button onClick={() => dispatch(decrement())} className="bg-red-500 text-white px-4 py-2 rounded-lg">
+              Decrement
+            </button>
+            <button onClick={() => dispatch(reset())} className="bg-gray-500 text-white px-4 py-2 rounded-lg">
+              Reset
+            </button>
+            <button onClick={() => dispatch(incrementByAmount(5))} className="bg-green-500 text-white px-4 py-2 rounded-lg">
+              +5
+            </button>
+          </div>
+
+          {/* Boolean Controls */}
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => dispatch(toggle())} className="bg-purple-500 text-white px-4 py-2 rounded-lg">
+              Toggle
+            </button>
+            <button onClick={() => dispatch(setTrue())} className="bg-green-500 text-white px-4 py-2 rounded-lg">
+              Set True
+            </button>
+            <button onClick={() => dispatch(setFalse())} className="bg-red-500 text-white px-4 py-2 rounded-lg">
+              Set False
+            </button>
+          </div>
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
