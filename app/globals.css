@@ -1,1 +1,25 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.bg-noise {
+    background-color: #2E2E2E;
+    background-image: url('/noise.png');
+    background-size: 300px;
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    opacity: 1;
+}
+
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.nav-item {
+    @apply px-4 py-2 text-lg font-semibold hover:text-white transition-colors;
+}

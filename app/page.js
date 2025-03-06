@@ -1,152 +1,58 @@
-"use client";
-
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement, reset, incrementByAmount } from "@/lib/features/counter/slice";
-import { toggle, setTrue, setFalse } from "@/lib/features/quote/slice";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
+import "@/app/globals.css";
+import Header from "./components/Header";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700", "900"] });
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const count = useSelector((state) => state.counter.value);
-  const boolValue = useSelector((state) => state.boolean.value);
-
-  useEffect(() => { 
-    console.log("Counter Value:", count);
-    console.log("Boolean Value:", boolValue);
-  }, [count, boolValue]);
-
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className={`bg-noise full-screen text-[#FFA500] ${poppins.className}`}>
+      <Header />
+      <div className="flex flex-col items-center justify-center h-screen text-center px-4 sm:px-6 relative">
+        
+        {/* Rocket Image - Only visible on desktop (lg and above) */}
+        <Image 
+          src="/rocket.png" 
+          alt="Rocket Image" 
+          width={2000} 
+          height={2000} 
+          className="absolute left-0 lg:left-[-350px] top-100 transform -translate-y-1/2 hidden lg:block"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        {/* Display Redux Values */}
-        <div className="border p-4 rounded-lg text-center">
-          <h2 className="text-lg font-semibold">Redux State</h2>
-          <p>Counter: {count}</p>
-          <p>Boolean State: {boolValue ? "True ✅" : "False ❌"}</p>
+        {/* Welcome Text */}
+        <p className="text-3xl sm:text-5xl md:text-[90px] tracking-tighter font-bold text-white leading-none">
+          Welcome to
+        </p>
 
-          {/* Counter Controls */}
-          <div className="flex gap-4 mt-4">
-            <button onClick={() => dispatch(increment())} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-              Increment
-            </button>
-            <button onClick={() => dispatch(decrement())} className="bg-red-500 text-white px-4 py-2 rounded-lg">
-              Decrement
-            </button>
-            <button onClick={() => dispatch(reset())} className="bg-gray-500 text-white px-4 py-2 rounded-lg">
-              Reset
-            </button>
-            <button onClick={() => dispatch(incrementByAmount(5))} className="bg-green-500 text-white px-4 py-2 rounded-lg">
-              +5
-            </button>
-          </div>
+        {/* Advaython Text */}
+        <h1 className="text-5xl sm:text-7xl md:text-[150px] font-bold text-[#FD5402] tracking-tighter leading-none whitespace-nowrap">
+          ADVAYTHON <span className="text-white font-extrabold">'25</span>
+        </h1>
 
-          {/* Boolean Controls */}
-          <div className="flex gap-4 mt-4">
-            <button onClick={() => dispatch(toggle())} className="bg-purple-500 text-white px-4 py-2 rounded-lg">
-              Toggle
-            </button>
-            <button onClick={() => dispatch(setTrue())} className="bg-green-500 text-white px-4 py-2 rounded-lg">
-              Set True
-            </button>
-            <button onClick={() => dispatch(setFalse())} className="bg-red-500 text-white px-4 py-2 rounded-lg">
-              Set False
-            </button>
-          </div>
-        </div>
+        {/* Subtitle */}
+        <p className="text-xs sm:text-md md:text-lg text-gray-300 max-w-xs sm:max-w-md md:max-w-2xl mt-4 leading-tight text-center px-2 sm:px-0">
+          Join us for <span className="text-white font-medium">Hackathon 2025</span> at
+          <span className="text-white font-semibold"> Sri Sairam College of Engineering</span> to
+          innovate in <span className="text-white font-semibold">AI, Web Development, Blockchain,
+          Cybersecurity, IoT, or Social Impact.</span>
+        </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Hash Image - Only visible on desktop (lg and above) */}
+        <Image 
+          src="/hash.png" 
+          alt="Hash Symbol" 
+          width={1000} 
+          height={1000} 
+          className="mt-4 absolute left-0 lg:left-[160px] top-106 transform -translate-y-1/2 hidden lg:block"
+        />
+
+        {/* Register Now Button */}
+        <button className="mt-4 sm:mt-6 px-5 sm:px-8 py-3 sm:py-4 w-40 sm:w-56 h-12 sm:h-16 bg-[#ffffff] text-[#FD5402] font-semibold rounded-2xl shadow-md hover:bg-white transition cursor-pointer">
+          Register Now
+        </button>
+
+      </div>
     </div>
   );
 }

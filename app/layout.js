@@ -1,4 +1,8 @@
 import StoreProvider from "./StoreProvider";
+import { Poppins } from "next/font/google";
+import "@/app/globals.css";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600", "700"] });
 
 export const metadata = {
   title: "Advaython",
@@ -7,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <body>
         <StoreProvider>{children}</StoreProvider>
       </body>
