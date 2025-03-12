@@ -39,10 +39,10 @@ export default function Home() {
             Welcome to
           </h1>
           <div className="flex flex-wrap justify-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
-            <span className="text-white">#</span>
-            <span className="text-orange-500">ADVAY</span>
-            <span className="text-orange-500 relative">
-              THO
+            <span className="text-white lg:text-6xl">#</span>
+            <span className="text-orange-500 lg:text-7xl">ADVAY</span>
+            <span className="text-orange-500 relative lg:text-7xl">
+              THON <span className="text-white">'25</span>
               <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12">
                   {/* Uncomment Image if needed */}
@@ -50,8 +50,8 @@ export default function Home() {
                 </div>
               </span>
             </span>
-            <span className="text-orange-500">N</span>
-            <span className="text-white">'25</span>
+            {/* <span className="text-orange-500 lg:text-8xl">N</span> */}
+            {/* <span className="text-white">'25</span> */}
           </div>
 
           {/* Description */}
@@ -73,6 +73,60 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <section className="relative overflow-hidden py-12 mt-16">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-orange-500  text-center mb-8">Gallery</h2>
+        <div className="relative w-full overflow-hidden">
+          <div className="scrolling-wrapper flex gap-6 w-max animate-[scrolling_20s_linear_infinite]">
+            {[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].map((num, index) => (
+              <div key={index} className="w-64 h-40 sm:w-80 sm:h-52 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+                <Image
+                  src={`/gallery/image${num}.jpg`}
+                  alt={`Gallery Image ${num}`}
+                  width={320}
+                  height={208}
+                  className="w-full h-full object-cover border"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container mb-10 mx-auto px-6 py-22 mt-16 bg-zinc-800 rounded-lg shadow-lg text-white">
+        {/* About Section */}
+        <div className="text-center m-10">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-orange-500">About Advaython</h2>
+          <p className="mt-6 text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+            Advaython is back, bigger and bolder! This high-energy innovation marathon brings together creative minds, developers,
+            designers, and tech enthusiasts to solve real-world challenges through technology. Whether you're a coding expert or a
+            passionate problem solver, this is your chance to collaborate, build, and showcase your skills.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="m-12 border-t border-gray-600 w-3/4 mx-auto"></div>
+
+        {/* Venue Section */}
+        <div className="mt-12 text-center">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-orange-500">Venue</h2>
+          <p className="mt-4 text-gray-300 text-lg sm:text-xl">
+            <span className="block font-semibold">Sri Sairam College of Engineering</span>
+            Anekal, Bengaluru
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="mt-12 border-t border-gray-600 w-3/4 mx-auto"></div>
+
+        {/* Team Limit Section */}
+        <div className="mt-12 text-center">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-orange-500">Team Limit</h2>
+          <p className="mt-4 text-gray-300 text-lg sm:text-xl">
+            2 - 4 Members
+          </p>
+        </div>
+      </section>
+
     </main>
   );
 }
